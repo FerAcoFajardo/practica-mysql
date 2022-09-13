@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  db:
+    image: "mysql:8.0.28-oracle"
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: "practica_sql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: practica_node
+      MYSQL_ROOT_PASSWORD: 12345
+    volumes:
+      - "./local_dev_db:/usr/src/db"
+  # db:
+  #   image: "postgres:alpine"
+  #   container_name: "digilogics_sql"
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_DB: digilogics_db
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: ludens123
+  #   volumes:
+  #     - "./local_dev_db:/usr/src/db"
