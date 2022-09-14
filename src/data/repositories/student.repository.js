@@ -25,7 +25,7 @@ class StudentRepository{
                 }
                 console.log("Student successfully created");
             });
-            this._connection.end();
+            this.connection.end();
         });
     }
 
@@ -43,7 +43,7 @@ class StudentRepository{
                 }
                 console.log("Student successfully updated");
             });
-            this._connection.end();
+            this.connection.end();
         });
     }
 
@@ -70,7 +70,7 @@ class StudentRepository{
                     resolve(students);
                 
                 });
-                this._connection.end();
+                this.connection.end();
             });
         });
     }
@@ -99,8 +99,26 @@ class StudentRepository{
                     resolve(students);
                 
                 });
-                this._connection.end();
+                this.connection.end();
             });
+        });
+    }
+
+    delete(id){
+        this.connection.connect((err) => {
+            if(err){
+                console.log("Error connecting to database");
+                return;
+            }
+            const sqlCode = `DELETE FROM students WHERE id = ${id}`;
+            this.connection.query(sqlCode, (error, result) => {
+                if(error){
+                    console.log("Delete error");
+                    return;
+                }
+                console.log("Student successfully deleted");
+            });
+            this.connection.end();
         });
     }
 }

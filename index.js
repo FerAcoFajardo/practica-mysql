@@ -12,12 +12,21 @@ const studentRepository = new StudentRepository()
 //         console.log(err);
 //     });
 
-studentRepository.read(1).then((result) => {
-    console.table(result);
-    }).catch((err) => {
-        console.log(err);
-    });
+// studentRepository.read(1).then((result) => {
+//     console.table(result);
+//     }).catch((err) => {
+//         console.log(err);
+//     });
 
 // const student2 = new Student("1", "Pedro Perez");
 
 // studentRepository.update(student2);
+
+studentRepository.delete(3);
+
+// async function init(){
+//     const result = await studentRepository.readAll();
+//     console.table(result);
+// }
+
+// init();
