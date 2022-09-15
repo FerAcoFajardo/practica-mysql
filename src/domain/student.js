@@ -1,30 +1,48 @@
-export class Student {
+import { Sequelize, DataTypes, Model } from "sequelize";
+import { sequelize } from "../data/connection.js";
+export class Student extends Model{}
 
 
-    constructor(id, name){
-        this._id = id;
-        this._name = name;
+Student.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        max: 100
     }
+}, {
+    sequelize,
+    timestamps: false,
+    tableName: "students",
+    modelName: "Student",
+})
 
-    get id(){
-        return this._id;
-    }
+// constructor(id, name){
+//     this._id = id;
+//     this._name = name;
+// }
 
-    get name(){
-        return this._name;
-    }
+// get id(){
+//     return this._id;
+// }
 
-    set name(name){
-        this._name = name;
-    }
-    
+// get name(){
+//     return this._name;
+// }
+
+// set name(name){
+//     this._name = name;
+// }
 
 
-    inscribir(groupCode){
-        if(groupCode === undefined
-            || typeof groupCode !== "string"){
-            throw Error("Código grupo invalido");
-        }
-        console.log("Alumno inscrito a " + groupCode);
-    }
-}
+
+// inscribir(groupCode){
+//     if(groupCode === undefined
+//         || typeof groupCode !== "string"){
+//         throw Error("Código grupo invalido");
+//     }
+//     console.log("Alumno inscrito a " + groupCode);
+// }

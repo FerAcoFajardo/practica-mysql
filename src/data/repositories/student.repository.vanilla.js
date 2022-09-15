@@ -1,41 +1,32 @@
 import { Student } from "../../domain/student.js";
-// import {sequelize} from "../conection.js";
+import {getConnection} from "../conection.js";
 
 class StudentRepository{
     
-    // constructor(){
-    //     this._connection = sequelize;
-    // }
+    constructor(){
+        this._connection = getConnection();
+    }
 
-    // get connection(){
-    //     return this._connection;
-    // }
+    get connection(){
+        return this._connection;
+    }
 
-    async create(student){
-        try{
-            const result = await Student.create({name:student.name});
-            await result.reload()
-            return result
-        }catch(error){
-            console.log(error)
-        }
-
-        // console.log(result.toJSON());
-        // this.connection.connect((err) => {
-        //     if(err){
-        //         console.log("Error connecting to database");
-        //         return;
-        //     }
-        //     const sqlCode = `INSERT INTO students(name) VALUES('${student.name}')`;
-        //     this.connection.query(sqlCode, (error, result) => {
-        //         if(error){
-        //             console.log("Insert error");
-        //             return;
-        //         }
-        //         console.log("Student successfully created");
-        //     });
-        //     this.connection.end();
-        // });
+    create(student){
+        this.connection.connect((err) => {
+            if(err){
+                console.log("Error connecting to database");
+                return;
+            }
+            const sqlCode = `INSERT INTO students(name) VALUES('${student.name}')`;
+            this.connection.query(sqlCode, (error, result) => {
+                if(error){
+                    console.log("Insert error");
+                    return;
+                }
+                console.log("Student successfully created");
+            });
+            this.connection.end();
+        });
     }
 
     update(student){

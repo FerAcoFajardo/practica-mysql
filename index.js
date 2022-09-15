@@ -1,11 +1,11 @@
 import {Student} from "./src/domain/student.js";
 import {StudentRepository} from "./src/data/repositories/student.repository.js";
 
-const student = new Student("1", "Juan");
+const student = Student.build({name: "Fernando"});
 
 const studentRepository = new StudentRepository()
 
-// studentRepository.create(student);
+studentRepository.create(student);
 // studentRepository.readAll().then((result) => {
 //     console.table(result);
 //     }).catch((err) => {
@@ -22,7 +22,7 @@ const studentRepository = new StudentRepository()
 
 // studentRepository.update(student2);
 
-studentRepository.delete(3);
+// studentRepository.delete(3);
 
 // async function init(){
 //     const result = await studentRepository.readAll();

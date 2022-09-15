@@ -1,4 +1,4 @@
-import {createConnection} from "mysql";
+import {Sequelize} from "sequelize";
 
 export const getConnection = () => {
     const conection = createConnection({
